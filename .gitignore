@@ -36,5 +36,4 @@ lerna-debug.log*
 
 # Everything related to docker
 docker-compose.yml
-Dockerfile
 .dockerignore
