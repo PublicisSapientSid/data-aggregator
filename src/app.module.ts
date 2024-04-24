@@ -4,16 +4,18 @@ import { AxiosModule } from './axios/axios.module';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     AxiosModule,
     ClientsModule.register([
       {
         name: 'OPERATOR_SERVICE',
         transport: Transport.TCP,
         options: {
-          host: 'localhost',
+          host: process.env.OPERATOR_SERVICE_HOST || 'localhost',
           port: 3031,
         },
       },
@@ -21,7 +23,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         name: 'HOTEL_SERVICE',
         transport: Transport.TCP,
         options: {
-          host: 'localhost',
+          host: process.env.HOTEL_SERVICE_HOST || 'localhost',
           port: 3032,
         },
       },
