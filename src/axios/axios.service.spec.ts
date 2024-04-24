@@ -27,7 +27,6 @@ describe('AxiosService', () => {
         3,
       )) as unknown as AxiosResponse;
 
-      console.log({ responseData, result });
       expect(axiosService.axiosGet).toHaveBeenCalledTimes(1);
       expect(axiosService.axiosGet).toHaveBeenCalledWith(url);
       expect(result.data).toEqual(responseData);
